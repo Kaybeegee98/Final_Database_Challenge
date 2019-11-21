@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.539
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CelibateMusic", "CelibateMusic\CelibateMusic.sqlproj", "{0CB022A4-3C17-4D74-9C55-940420106228}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CelibateMusicAPI", "CelibateMusicAPI\CelibateMusicAPI.csproj", "{2EE49803-25F1-4CBB-970A-2F8797B52756}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{0CB022A4-3C17-4D74-9C55-940420106228}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CB022A4-3C17-4D74-9C55-940420106228}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0CB022A4-3C17-4D74-9C55-940420106228}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2EE49803-25F1-4CBB-970A-2F8797B52756}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EE49803-25F1-4CBB-970A-2F8797B52756}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EE49803-25F1-4CBB-970A-2F8797B52756}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EE49803-25F1-4CBB-970A-2F8797B52756}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

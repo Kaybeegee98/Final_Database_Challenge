@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DADModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="7602Customer">
+          <Key>
+            <PropertyRef Name="CustomerNumber" />
+            <PropertyRef Name="InterestCode" />
+          </Key>
+          <Property Name="CustomerNumber" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Postcode" Type="int" Nullable="false" />
+          <Property Name="InterestCode" Type="nvarchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="7602Interest">
+          <Key>
+            <PropertyRef Name="InterestCode" />
+          </Key>
+          <Property Name="InterestCode" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="InterestDescription" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="7602Record">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Performer" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="7602Sale">
+          <Key>
+            <PropertyRef Name="SaleDate" />
+            <PropertyRef Name="RecordID" />
+            <PropertyRef Name="CustomerNumber" />
+            <PropertyRef Name="InterestCode" />
+          </Key>
+          <Property Name="SaleDate" Type="date" Nullable="false" />
+          <Property Name="PricePaid" Type="int" Nullable="false" />
+          <Property Name="RecordID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CustomerNumber" Type="int" Nullable="false" />
+          <Property Name="InterestCode" Type="nvarchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Customer_Interest">
+          <End Role="7602Interest" Type="Self.7602Interest" Multiplicity="1" />
+          <End Role="7602Customer" Type="Self.7602Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="7602Interest">
+              <PropertyRef Name="InterestCode" />
+            </Principal>
+            <Dependent Role="7602Customer">
+              <PropertyRef Name="InterestCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sale_Customer">
+          <End Role="7602Customer" Type="Self.7602Customer" Multiplicity="1" />
+          <End Role="7602Sale" Type="Self.7602Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="7602Customer">
+              <PropertyRef Name="CustomerNumber" />
+              <PropertyRef Name="InterestCode" />
+            </Principal>
+            <Dependent Role="7602Sale">
+              <PropertyRef Name="CustomerNumber" />
+              <PropertyRef Name="InterestCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sale_Record">
+          <End Role="7602Record" Type="Self.7602Record" Multiplicity="1" />
+          <End Role="7602Sale" Type="Self.7602Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="7602Record">
+              <PropertyRef Name="RecordID" />
+            </Principal>
+            <Dependent Role="7602Sale">
+              <PropertyRef Name="RecordID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DADModelStoreContainer">
+          <EntitySet Name="7602Customer" EntityType="Self.7602Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="7602Interest" EntityType="Self.7602Interest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="7602Record" EntityType="Self.7602Record" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="7602Sale" EntityType="Self.7602Sale" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Customer_Interest" Association="Self.FK_Customer_Interest">
+            <End Role="7602Interest" EntitySet="7602Interest" />
+            <End Role="7602Customer" EntitySet="7602Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sale_Customer" Association="Self.FK_Sale_Customer">
+            <End Role="7602Customer" EntitySet="7602Customer" />
+            <End Role="7602Sale" EntitySet="7602Sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sale_Record" Association="Self.FK_Sale_Record">
+            <End Role="7602Record" EntitySet="7602Record" />
+            <End Role="7602Sale" EntitySet="7602Sale" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DADModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C7602Customer">
+          <Key>
+            <PropertyRef Name="CustomerNumber" />
+            <PropertyRef Name="InterestCode" />
+          </Key>
+          <Property Name="CustomerNumber" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Postcode" Type="Int32" Nullable="false" />
+          <Property Name="InterestCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="C7602Interest" Relationship="Self.FK_Customer_Interest" FromRole="C7602Customer" ToRole="C7602Interest" />
+          <NavigationProperty Name="C7602Sale" Relationship="Self.FK_Sale_Customer" FromRole="C7602Customer" ToRole="C7602Sale" />
+        </EntityType>
+        <EntityType Name="C7602Interest">
+          <Key>
+            <PropertyRef Name="InterestCode" />
+          </Key>
+          <Property Name="InterestCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="InterestDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="C7602Customer" Relationship="Self.FK_Customer_Interest" FromRole="C7602Interest" ToRole="C7602Customer" />
+        </EntityType>
+        <EntityType Name="C7602Record">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Performer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="C7602Sale" Relationship="Self.FK_Sale_Record" FromRole="C7602Record" ToRole="C7602Sale" />
+        </EntityType>
+        <EntityType Name="C7602Sale">
+          <Key>
+            <PropertyRef Name="SaleDate" />
+            <PropertyRef Name="RecordID" />
+            <PropertyRef Name="CustomerNumber" />
+            <PropertyRef Name="InterestCode" />
+          </Key>
+          <Property Name="SaleDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PricePaid" Type="Int32" Nullable="false" />
+          <Property Name="RecordID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CustomerNumber" Type="Int32" Nullable="false" />
+          <Property Name="InterestCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="C7602Customer" Relationship="Self.FK_Sale_Customer" FromRole="C7602Sale" ToRole="C7602Customer" />
+          <NavigationProperty Name="C7602Record" Relationship="Self.FK_Sale_Record" FromRole="C7602Sale" ToRole="C7602Record" />
+        </EntityType>
+        <Association Name="FK_Customer_Interest">
+          <End Role="C7602Interest" Type="Self.C7602Interest" Multiplicity="1" />
+          <End Role="C7602Customer" Type="Self.C7602Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C7602Interest">
+              <PropertyRef Name="InterestCode" />
+            </Principal>
+            <Dependent Role="C7602Customer">
+              <PropertyRef Name="InterestCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sale_Customer">
+          <End Role="C7602Customer" Type="Self.C7602Customer" Multiplicity="1" />
+          <End Role="C7602Sale" Type="Self.C7602Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C7602Customer">
+              <PropertyRef Name="CustomerNumber" />
+              <PropertyRef Name="InterestCode" />
+            </Principal>
+            <Dependent Role="C7602Sale">
+              <PropertyRef Name="CustomerNumber" />
+              <PropertyRef Name="InterestCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sale_Record">
+          <End Role="C7602Record" Type="Self.C7602Record" Multiplicity="1" />
+          <End Role="C7602Sale" Type="Self.C7602Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C7602Record">
+              <PropertyRef Name="RecordID" />
+            </Principal>
+            <Dependent Role="C7602Sale">
+              <PropertyRef Name="RecordID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DADEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C7602Customer" EntityType="Self.C7602Customer" />
+          <EntitySet Name="C7602Interest" EntityType="Self.C7602Interest" />
+          <EntitySet Name="C7602Record" EntityType="Self.C7602Record" />
+          <EntitySet Name="C7602Sale" EntityType="Self.C7602Sale" />
+          <AssociationSet Name="FK_Customer_Interest" Association="Self.FK_Customer_Interest">
+            <End Role="C7602Interest" EntitySet="C7602Interest" />
+            <End Role="C7602Customer" EntitySet="C7602Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sale_Customer" Association="Self.FK_Sale_Customer">
+            <End Role="C7602Customer" EntitySet="C7602Customer" />
+            <End Role="C7602Sale" EntitySet="C7602Sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sale_Record" Association="Self.FK_Sale_Record">
+            <End Role="C7602Record" EntitySet="C7602Record" />
+            <End Role="C7602Sale" EntitySet="C7602Sale" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DADModelStoreContainer" CdmEntityContainer="DADEntities">
+          <EntitySetMapping Name="C7602Customer">
+            <EntityTypeMapping TypeName="DADModel.C7602Customer">
+              <MappingFragment StoreEntitySet="7602Customer">
+                <ScalarProperty Name="CustomerNumber" ColumnName="CustomerNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="InterestCode" ColumnName="InterestCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C7602Interest">
+            <EntityTypeMapping TypeName="DADModel.C7602Interest">
+              <MappingFragment StoreEntitySet="7602Interest">
+                <ScalarProperty Name="InterestCode" ColumnName="InterestCode" />
+                <ScalarProperty Name="InterestDescription" ColumnName="InterestDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C7602Record">
+            <EntityTypeMapping TypeName="DADModel.C7602Record">
+              <MappingFragment StoreEntitySet="7602Record">
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Performer" ColumnName="Performer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C7602Sale">
+            <EntityTypeMapping TypeName="DADModel.C7602Sale">
+              <MappingFragment StoreEntitySet="7602Sale">
+                <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+                <ScalarProperty Name="PricePaid" ColumnName="PricePaid" />
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+                <ScalarProperty Name="CustomerNumber" ColumnName="CustomerNumber" />
+                <ScalarProperty Name="InterestCode" ColumnName="InterestCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
