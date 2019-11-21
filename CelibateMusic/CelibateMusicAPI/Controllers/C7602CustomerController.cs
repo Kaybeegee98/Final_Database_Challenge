@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using CelibateMusicAPI.Models;
+using System.Data.SqlClient;
 
 namespace CelibateMusicAPI.Controllers
 {
@@ -18,7 +19,7 @@ namespace CelibateMusicAPI.Controllers
 
         // GET: api/C7602Customer
         public IQueryable<C7602Customer> GetC7602Customer()
-        {
+        {          
             return db.C7602Customer;
         }
 
