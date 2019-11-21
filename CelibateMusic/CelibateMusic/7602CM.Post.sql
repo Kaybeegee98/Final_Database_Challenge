@@ -1,4 +1,9 @@
-﻿INSERT INTO [7602Record](RecordID, Title, Performer)
+﻿DELETE FROM [7602Sale];
+DELETE FROM [7602Record];
+DELETE FROM [7602Customer];
+DELETE FROM [7602Interest];
+
+INSERT INTO [7602Record](RecordID, Title, Performer)
 VALUES	('PF003', 'The Wall', 'Pink Floyd'),
 		('IX002', 'Kick', 'INXS'),
 		('SP069', 'Never Mind the Bollocks', 'Sex Pistols'),
@@ -15,7 +20,7 @@ VALUES	('RR', 'Rock and Roll'),
 		('JA', 'Jazz'),
 		('RB', 'Rhythm and Blues');
 
-INSERT INTO [07602Customer](CustomerNumber, [Name], [Address], PostCode, InterestCode)
+INSERT INTO [7602Customer](CustomerNumber, [Name], [Address], PostCode, InterestCode)
 VALUES	(123, 'Jimmy Barnes', '1 Sesame Street', 3000, 'RR'),
 		(456, 'Ian Moss', '10 Downing Street', 4000, 'JA'),
 		(789, 'Don Walker', '221B Baker Street', 5000, 'RB'),
