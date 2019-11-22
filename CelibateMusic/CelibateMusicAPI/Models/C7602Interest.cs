@@ -25,5 +25,11 @@ namespace CelibateMusicAPI.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C7602Customer> C7602Customer { get; set; }
+
+        public C7602Interest(string interestCode, string interestDescription)
+        {
+            this.InterestCode = interestCode;
+            this.InterestDescription = interestDescription;
+        }
     }
 }

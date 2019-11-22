@@ -78,6 +78,7 @@ namespace CelibateMusicAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+            c7602Interest = new C7602Interest("CH", "Chill");
 
             db.C7602Interest.Add(c7602Interest);
 
